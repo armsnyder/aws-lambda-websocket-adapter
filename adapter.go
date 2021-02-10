@@ -12,7 +12,6 @@ import (
 	"context"
 	"crypto/rand"
 	"encoding/base64"
-	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -101,20 +100,6 @@ func (a *Adapter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		if mt != websocket.TextMessage {
 			log.Println("unsupported message type:", mt)
 			break
-		}
-
-		// Parse the message, using the default API Gateway Websocket setting of assuming an
-		// "action" JSON key.
-		var messageAction struct {
-			Action string `json:"action"`
-		}
-		if err := json.Unmarshal(message, &messageAction); err != nil {
-			log.Println("unmarshal:", err)
-			if err := writeError(ws); err != nil {
-				log.Println("write:", err)
-				break
-			}
-			continue
 		}
 
 		// Invoke the Lambda handler
