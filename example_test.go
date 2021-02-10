@@ -1,19 +1,4 @@
-# AWS Websocket Adapter
-
-This `awswebsocketadapter` Go package can be used to run an AWS Lambda function integration
-for a websocket-type API Gateway, locally.
-
-It implements `http.Handler` to handle websocket connections
-and invokes the provided AWS Lambda handler function
-for any `CONNECT`, `DISCONNECT` or `MESSAGE` events.
-
-It also implements the `apigatewaymanagementapiiface.ApiGatewayManagementApiAPI` client interface
-from [aws-sdk-go](https://github.com/aws/aws-sdk-go), so it can be used to write messages back to a client.
-
-## Example
-
-```go
-package main
+package awswebsocketadapter_test
 
 import (
 	"context"
@@ -27,7 +12,7 @@ import (
 	awswebsocketadapter "github.com/armsnyder/aws-websocket-adapter"
 )
 
-func main() {
+func Example() {
 	// Create the adapter.
 	var adapter awswebsocketadapter.Adapter
 
@@ -59,4 +44,3 @@ func createHandler(client apigatewaymanagementapiiface.ApiGatewayManagementApiAP
 		return resp, err
 	}
 }
-```
