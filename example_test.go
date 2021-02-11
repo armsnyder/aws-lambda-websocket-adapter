@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/apigatewaymanagementapi"
 	"github.com/aws/aws-sdk-go/service/apigatewaymanagementapi/apigatewaymanagementapiiface"
 
-	awswebsocketadapter "github.com/armsnyder/aws-websocket-adapter"
+	"github.com/armsnyder/awswebsocketadapter"
 )
 
 func Example() {

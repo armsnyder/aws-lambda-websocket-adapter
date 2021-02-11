@@ -44,6 +44,9 @@ type Adapter struct {
 // ServeHTTP upgrades the request from HTTP to WS and then continues to send and receive websocket
 // messages over the connection.
 func (a *Adapter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	// Disable origin checking.
+	a.upgrader.CheckOrigin = func(_ *http.Request) bool { return true }
+
 	// Upgrade the HTTP request to WS.
 	ws, err := a.upgrader.Upgrade(w, r, nil)
 	if err != nil {

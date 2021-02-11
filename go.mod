@@ -1,4 +1,4 @@
-module github.com/armsnyder/aws-websocket-adapter
+module github.com/armsnyder/awswebsocketadapter
 
 go 1.15
 
